@@ -20,7 +20,8 @@ $sql = "Delete from car_rent where email='$email' ";
 
 if ($dbconnect->query($sql)) {
     echo "Car removed successfully";
-} else {
+}
+else {
     echo "CONTACT THE ADMIN" ;
 }
 
