@@ -56,7 +56,7 @@
 session_start();
 if(isset($_POST['username']) and isset($_POST['password']))  { //check null
         $username = $_POST['username']; // text field for username
-        $password = $_POST['password']; // text field for password
+        $password = md5($_POST['password']); // text field for password
 
 // store session data
 $_SESSION['username']=$username;
