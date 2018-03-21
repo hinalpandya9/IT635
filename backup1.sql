@@ -1,6 +1,6 @@
--- MySQL dump 10.13  Distrib 5.7.21, for Linux (i686)
+-- MySQL dump 10.13  Distrib 5.7.21, for Linux (x86_64)
 --
--- Host: localhost    Database: project
+-- Host: localhost    Database: newD
 -- ------------------------------------------------------
 -- Server version	5.7.21-0ubuntu0.16.04.1
 
@@ -26,11 +26,11 @@ CREATE TABLE `car_avai` (
   `carID` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(30) DEFAULT NULL,
   `model` varchar(30) DEFAULT NULL,
-  `year` int(11) DEFAULT NULL,
+  `year` varchar(10) DEFAULT NULL,
   `color` varchar(20) DEFAULT NULL,
   `price` int(11) DEFAULT NULL,
   PRIMARY KEY (`carID`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `car_avai` (
 
 LOCK TABLES `car_avai` WRITE;
 /*!40000 ALTER TABLE `car_avai` DISABLE KEYS */;
-INSERT INTO `car_avai` VALUES (1,'Audi','Q5',2018,'Black',48795),(2,'BMW','X6',2016,'white',51995),(3,'Dodge','Challenger',2016,'red',31500),(4,'Honda','CR V',2015,'Gray',21500),(5,'Land Rover','Range Rover',2017,'blue',83995),(6,'Mazda','Mazda3 sport',2013,'silver',25499),(7,'Nissan','Pathfinder',2014,'mate black',21090),(9,'Porsche','Macan turbo',2017,'Silver',57499);
+INSERT INTO `car_avai` VALUES (1,'Audi','Q5','2018','Black',48795),(2,'BMW','X6','2016','white',51995),(3,'Dodge','Challenger','2016','red',31500),(4,'Honda','CRV','2015','Gray',21500),(5,'LandRover','RangeRover','2017','blue',83995),(6,'Mazda','Mazda3sport','2013','silver',25499),(7,'Nissan','Pathfinder','2014','mateBlack',21090),(9,'Porsche','MacanTurbo','2017','Silver',57499),(13,'Jeep','compass','2011','aqua',29585);
 /*!40000 ALTER TABLE `car_avai` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -52,7 +52,7 @@ DROP TABLE IF EXISTS `car_rent`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `car_rent` (
   `email` varchar(35) NOT NULL,
-  `password` varchar(8) DEFAULT NULL,
+  `password` char(32) DEFAULT NULL,
   `user` char(1) DEFAULT NULL,
   `carID` int(11) NOT NULL,
   `loc_name` varchar(35) DEFAULT NULL,
@@ -68,7 +68,7 @@ CREATE TABLE `car_rent` (
 
 LOCK TABLES `car_rent` WRITE;
 /*!40000 ALTER TABLE `car_rent` DISABLE KEYS */;
-INSERT INTO `car_rent` VALUES ('abc@gmail.com','abc','A',2,'Lakewood'),('hgp@gmail.com','hgp','A',9,'Williamstown'),('mnp@gmail.com','mnp','R',3,'Toms River'),('pqr@gmail.com','pqr','R',5,'Egg Harbor'),('rst@gmail.com','rst','R',6,'Princeton'),('xyz@gmail.com','xyz','A',7,'Winslow');
+INSERT INTO `car_rent` VALUES ('abc@gmail.com', MD5('abc'),'A',2,'Lakewood'),('cde@gmail.com', MD5('cde'),'R',7,'Edison'),('hgp@gmail.com',MD5('hgp'),'A',9,'Williamstown'),('mnp@gmail.com',MD5('mnp'),'R',3,'Toms River'),('pqr@gmail.com',MD5('pqr'),'R',5,'Egg Harbor'),('rst@gmail.com',MD5('rst'),'R',6,'Princeton'),('xyz@gmail.com',MD5('xyz'),'A',7,'Winslow');
 /*!40000 ALTER TABLE `car_rent` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -86,7 +86,7 @@ CREATE TABLE `location` (
   PRIMARY KEY (`loc_ID`),
   KEY `carID` (`carID`),
   CONSTRAINT `location_ibfk_1` FOREIGN KEY (`carID`) REFERENCES `car_avai` (`carID`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=449 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=452 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -95,7 +95,7 @@ CREATE TABLE `location` (
 
 LOCK TABLES `location` WRITE;
 /*!40000 ALTER TABLE `location` DISABLE KEYS */;
-INSERT INTO `location` VALUES (111,'Egg harbor',5),(222,'Lakewood',2),(333,'Princeton',6),(444,'Toms River',3),(445,'Winslow',7),(447,'Voorhees',1),(448,'Williamstown',9);
+INSERT INTO `location` VALUES (111,'Egg harbor',5),(222,'Lakewood',2),(333,'Princeton',6),(444,'Toms River',3),(445,'Winslow',7),(447,'Voorhees',1),(448,'Williamstown',9),(449,'NewBrunswick',13),(450,'Edison',7);
 /*!40000 ALTER TABLE `location` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -108,4 +108,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-02-23 22:25:11
+-- Dump completed on 2018-03-21 18:09:23
